@@ -68,6 +68,9 @@ public class AvengersSecurity {
                             .anyRequest().authenticated()
         )
 
+        .exceptionHandling(configurer -> configurer.accessDeniedPage("/access-denied")
+        )
+
         .formLogin(form->form.loginPage("/customLoginPage")
                 .loginProcessingUrl("/authenticateTheUser")
                 .permitAll()

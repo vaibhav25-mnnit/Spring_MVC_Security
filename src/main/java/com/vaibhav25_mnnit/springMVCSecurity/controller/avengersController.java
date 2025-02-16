@@ -21,4 +21,8 @@ public class avengersController {
     public String adminRoute(){
         return "admin-page";
     }
+    @GetMapping("/access-denied")
+    public String accessDenied(){
+        return "access-denied";
+    }
 }
