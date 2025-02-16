@@ -18,6 +18,9 @@
     <div class="error" th:if="${param.error}">
         <i>Invalid credentials</i>
     </div>
+    <div class="error" th:if="${param.logout}">
+        <i>Logged Out</i>
+    </div>
         <p>
         User name: <input type="text" name="username" />
     </p>

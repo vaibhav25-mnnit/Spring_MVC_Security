@@ -16,6 +16,9 @@
             Invalid credentials
         </div>
 
+        <div class="alert alert-danger" role="alert" th:if="${param.logout}">
+            Logged Out
+        </div>
         <div class="mb-3">
             <label for="username" class="form-label">User Name</label>
             <input type="text" id="username" name="username" class="form-control" required>

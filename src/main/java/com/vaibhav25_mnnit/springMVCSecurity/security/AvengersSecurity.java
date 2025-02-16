@@ -62,9 +62,13 @@ public class AvengersSecurity {
     {
         http.authorizeHttpRequests(configurer -> configurer.anyRequest().authenticated()
         )
-                .formLogin(form->form.loginPage("/customLoginPage")
-                        .loginProcessingUrl("/authenticateTheUser")
-                        .permitAll());
+
+        .formLogin(form->form.loginPage("/customLoginPage")
+                .loginProcessingUrl("/authenticateTheUser")
+                .permitAll()
+        )
+                .logout(logout -> logout.permitAll()
+                );
 
         return http.build();
     }
