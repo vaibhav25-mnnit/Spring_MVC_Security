@@ -9,6 +9,6 @@ public class LoginController {
 
     @GetMapping("/customLoginPage")
     public String loinRoute(){
-        return "Login";
+        return "styled-form";
     }
 }
