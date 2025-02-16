@@ -16,11 +16,15 @@
     <h3 class="text-secondary">Your roles are <span sec:authentication="principal.authorities" />.</h3>
 </div>
 
-<div class="flex center ">
-    <a class="btn btn-warning" th:href="@{/manager}">Go to manager page</a>
-    <a class="btn btn-primary" th:href="@{/admin}">Go to Admin page</a>
-</div>
-<hr/>
+    <div sec:authorize="hasRole('MANAGER')" >
+        <a class="btn btn-warning" th:href="@{/manager}">Go to manager page</a>
+        <hr/>
+    </div>
+
+    <div sec:authorize="hasRole('ADMIN')">
+        <a class="btn btn-primary" th:href="@{/admin}">Go to Admin page</a>
+        <hr/>
+    </div>
 
 <form method="post"  th:action="@{/logout}" >
     <button type="submit" class="btn btn-danger btn-lg">Log out</button>
