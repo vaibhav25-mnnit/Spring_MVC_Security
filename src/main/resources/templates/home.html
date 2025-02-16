@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<html lang="en"xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/spring-security"
+>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,9 +12,11 @@
 <body class="bg-light d-flex flex-column justify-content-center align-items-center vh-100">
 
 <div class="text-center mb-4">
-    <h1 class="fw-bold text-primary">Hello there, we are learning Spring Security</h1>
-    <h3 class="text-secondary">This is the Home Page.</h3>
+    <h1 class="fw-bold text-primary">Hello <span class="fw-bold" sec:authentication="principal.username"></span>, you are as Avenger Now 🫡.</h1>
+    <h3 class="text-secondary">Your roles are <span sec:authentication="principal.authorities" />.</h3>
 </div>
+
+
 
 <form method="post"  th:action="@{/logout}" >
     <button type="submit" class="btn btn-danger btn-lg">Log out</button>
