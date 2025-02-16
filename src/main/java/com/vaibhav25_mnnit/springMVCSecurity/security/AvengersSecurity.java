@@ -19,40 +19,40 @@ public class AvengersSecurity {
         UserDetails ironman = User.builder()
                 .username("ironman")
                 .password("{noop}ironman")
-                .roles("EMPLOYEE","MANAGER","ADMIN")
+                .roles("AVENGER","MANAGER","ADMIN")
                 .build();
 
 
         UserDetails captain = User.builder()
                 .username("captain")
                 .password("{noop}captain")
-                .roles("EMPLOYEE","MANAGER")
+                .roles("AVENGER","MANAGER")
                 .build();
 
 
         UserDetails thor = User.builder()
                 .username("thor")
                 .password("{noop}thor")
-                .roles("EMPLOYEE")
+                .roles("AVENGER")
                 .build();
 
         UserDetails hulk = User.builder()
                 .username("hulk")
                 .password("{noop}hulk")
-                .roles("EMPLOYEE")
+                .roles("AVENGER")
                 .build();
 
 
         UserDetails blackwidow = User.builder()
                 .username("blackwidow")
                 .password("{noop}blackwidow")
-                .roles("EMPLOYEE")
+                .roles("AVENGER")
                 .build();
 
         UserDetails hawkeye = User.builder()
                 .username("hawkeye")
                 .password("{noop}hawkeye")
-                .roles("EMPLOYEE")
+                .roles("AVENGER")
                 .build();
         return new InMemoryUserDetailsManager(ironman,captain,thor,hulk,blackwidow,hawkeye);
     }
@@ -60,7 +60,12 @@ public class AvengersSecurity {
     @Bean
     public SecurityFilterChain avengersFilterChain(HttpSecurity http) throws  Exception
     {
-        http.authorizeHttpRequests(configurer -> configurer.anyRequest().authenticated()
+        http.authorizeHttpRequests( configurer ->
+                    configurer
+                            .requestMatchers("/").hasRole("AVENGER")
+                            .requestMatchers("/manager/**").hasRole("MANAGER")
+                            .requestMatchers("/admin/**").hasRole("ADMIN")
+                            .anyRequest().authenticated()
         )
 
         .formLogin(form->form.loginPage("/customLoginPage")

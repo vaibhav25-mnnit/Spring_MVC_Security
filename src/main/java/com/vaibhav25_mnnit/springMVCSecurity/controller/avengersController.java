@@ -5,10 +5,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class LoginController {
+public class avengersController {
 
     @GetMapping("/customLoginPage")
     public String loinRoute(){
         return "Login";
+    }
+
+    @GetMapping("/manager")
+    public String managerRoute(){
+        return "manager-page";
+    }
+
+    @GetMapping("/admin")
+    public String adminRoute(){
+        return "admin-page";
     }
 }
