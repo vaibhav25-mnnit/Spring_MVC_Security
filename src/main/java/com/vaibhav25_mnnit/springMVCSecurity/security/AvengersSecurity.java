@@ -63,7 +63,18 @@ public class AvengersSecurity {
 
     @Bean
     public UserDetailsManager userDetailsManager(DataSource dataSource){
-        return new JdbcUserDetailsManager(dataSource);
+        JdbcUserDetailsManager jdbcUserDetialsManager = new JdbcUserDetailsManager(dataSource);
+
+        jdbcUserDetialsManager.setUsersByUsernameQuery(
+                "select user_id,pw,active from members where user_id=?"
+        );
+
+        jdbcUserDetialsManager.setAuthoritiesByUsernameQuery(
+                "select user_id,role from roles where user_id=?"
+        );
+
+
+        return jdbcUserDetialsManager;
     }
 
     @Bean
