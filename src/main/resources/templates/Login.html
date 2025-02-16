@@ -3,14 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Custom Login Page</title>
+    <style>
+        .error
+        {
+            color: red;
+        }
+    </style>
 </head>
 <body>
 
 <h3>My Custom Login Page</h3>
-
 <form action="#" th:action="@{/authenticateTheUser}" method="POST">
 
-    <p>
+    <div class="error" th:if="${param.error}">
+        <i>Invalid credentials</i>
+    </div>
+        <p>
         User name: <input type="text" name="username" />
     </p>
 
@@ -20,7 +28,7 @@
 
     <input type="submit" value="Login" />
 
-</form>http://localhost:8080/
+</form>
 
 
 </body>
